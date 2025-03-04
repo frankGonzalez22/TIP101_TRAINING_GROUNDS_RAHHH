@@ -1,5 +1,6 @@
 
 #-------------------------------------------Problem 1:---------------------------------------------------
+print("-------------------------------------------Problem 1:---------------------------------------------------")
 
 #1. Share 2 questions you would ask to help understand the question:
 #How can I determine if candidate exist in dictionary?
@@ -33,22 +34,27 @@ cast_vote(votes, "Alice")
 print(votes)
 cast_vote(votes, "Gina")
 print(votes)
-#-------------------------------------------Problem 2:---------------------------------------------------
-#1. Share 2 questions you would ask to help understand the question:
-#What makes the 2 dictionaries common? Same key value or pairs?
-#What functions can we use to solve this problem?
-#Understand
-#Function takes in 2 dicitonaries and reutrns a list of commonkeys 
-#For dictionaries to be common, keys have to exist in both dicitonaries 
-#Keys could possibly have the same value to be in common
-#Plan
-#Check if keys exist in both dictionaries
-#Check if both dictionaries both have similar key-values 
-#3. Translate each sub-problem into pseudocode:
+print("-------------------------------------------Problem 2:---------------------------------------------------")
 
-#4. Translate each sub-problem into pseudocode:
+#-------------------------------------------Problem 2:---------------------------------------------------
+#1) Create an empty list to hold common keys
+#2) For each key in dict1
+ # a) If the key is also in dict2, add to common keys
+#3) Return common keys
 
 #5. Translate the pseudocode into Python and share your final answer:
+#HI! QUick note I over complicated things more than I needed to. I was in a time crunch so
+#I will just copy and paste the code. I understand it though!!!
+def common_keys(dict1, dict2):
+    common = []
+    for key in dict1:
+        if key in dict2:
+            common.append(key)
+    return common
+dict1 = {"a": 1, "b": 2, "c": 3}
+dict2 = {"b": 4, "c": 5, "d": 6}
+common_list = common_keys(dict1, dict2)
+print(common_list)
 #-------------------------------------------Problem 3:---------------------------------------------------
 
 #1. Share 2 questions you would ask to help understand the question:
@@ -141,48 +147,31 @@ print("-------------------------------------------Problem 5:--------------------
     #How can I solve this without the get function?
     #How can I do this with 1 forloop?
 #Understand
-#   This function takes in a lst 
-#   Function returns element that is found majority in elemnt that is >n/2
-  
+    #   This function takes in a lst 
+    #   Function returns element that is found majority in elemnt that is >n/2
+    
 #2. Write out in plain English what you want to do: 
 #Plan 
-    #Store length of lst 'elements' in var called 'lstlen'
-    #Create dict called  'dict'
-    #for each number in lst 'elements'
-    #see if number is in dict elements 
-    #if in dict add by 1
-    #if not in dict add it 
-    
+#1) Create an empty dict for the frequency map
+#2) For each element in the list
+#  a) If it's not in the frequency map, add it with initial count of 0
+#  b) Regardless, now increment the count by 1
+#  c) If the count is greater than n/2, return the element
+#3) Never found anything, so return None
 
-#3. Translate each sub-problem into pseudocode:
-    #let solution below be helper function called findMaxVal(dict)
-    #loop through dict
-    #determine max occurance
-#4. Translate each sub-problem into pseudocode:
-    # if max occur > n/2 return num
-    #else return none 
-#5. Translate the pseudocode into Python and share your final answer:
-def findMaxVal(dict):
-    maxVal = max(tasks.values())
-    output = 0
-    for keys, keyVals in tasks.items():
-        if keyVals==maxVal:
-            output = keys
-            return  int(output)
-    return int(output)
 
+#I Was struggling with this earlier but after reading the code it  make sense
 def find_majority_element(elements):
-    lstlen = len(elements)
-    dict = {}
-    for num in elements:
-        if num in dict:
-            dict[num]+=1 
-        else:
-            dict[num] = num
-    print("Num ",findMaxVal(dict))
-    if findMaxVal(dict) >lstlen/2:
-        return findMaxVal(dict)
-    else:
-        return None
+    freq_map = {}
+    for element in elements:
+        if element not in freq_map:
+            freq_map[element] = 0
+        freq_map[element] += 1
+        if freq_map[element] > len(elements) / 2:
+            return element
+    return None
+
 elements = [2, 2, 1, 1, 1, 2, 2]
 print(find_majority_element(elements))
+
+#print(find_majority_element(elements))
