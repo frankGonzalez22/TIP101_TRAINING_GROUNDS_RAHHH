@@ -64,27 +64,52 @@ print("------------------Problem 3 --------------------")
 #2. Write out in plain English what you want to do: 
 #Create empty array with defined length   called ouput 
 #As I loop through first letter of 's' I want to 
-#Keep track of first and last letter  - calls for enumuerate ngl or 2 pointer tbh
+#Keep track of first and last letter  -  2 pointer tbh
 #3. Translate each sub-problem into pseudocode:
 #let first pointer keep track of first letter
 #let last pointer point last letter 
-#as we go to one chracter at a time
+
 #4. Translate each sub-problem into pseudocode:
-#if character add it to its current index 
-#swap placement of first and last index
+
+#if both are letters swap indexs
+#if either pointers are characters inser empty array with the character at its current index
+
 #Convert list into string 
+
 #5. Translate the pseudocode into Python and share your final answer:
 def reverse_only_letters(s):
     reverseArr = [None]*len(s)
-    for firstLetter, lastLetter in enumerate(range(len(s)-1, -1, -1)):
-        if s[firstLetter] != "-" and s[lastLetter] != "-":
-            temp = s[lastLetter]
-            s[firstLetter] = s[lastLetter]
-            s[lastLetter] = temp 
-    return ''.join(reverseArr)
+    
+    pointer1 = 0
+    pointer2 = len(s)-1
+    while pointer1 < pointer2: 
+        if s[pointer1] != '-' and s[pointer2] != '-':
+            reverseArr[pointer1] = s[pointer2]
+            reverseArr[pointer2] = s[pointer1]
+            pointer1+=1
+            pointer2-=1
+           
+            print("CONDITION 1 ")
+        elif s[pointer1] == '-' and s[pointer2] != '-':
+            reverseArr[pointer1] = '-'
+            pointer1+=1
+            print("CONDITION 2 ")
+        else: 
+            reverseArr[pointer2] = '-'
+            pointer2-=1
+
+            print("CONDITION 3 ")
+        
+    print("ARR ", reverseArr)
+
+
+        
+
+
 s = "a-bC-dEf-ghIj"
-#reversed_s = reverse_only_letters(s)
-#print(reversed_s)
+#    j-Ih-gfE-dCba
+reversed_s = reverse_only_letters(s)
+print(reversed_s)
 print("------------------Problem 4 --------------------")
 
 #1. Share 2 questions you would ask to help understand the question:
@@ -117,7 +142,8 @@ s2 = "abcdef"
 l2 = longest_uniform_substring(s2)
 print(l2)
 print("------------------Problem 5 --------------------")
-
+#HI HEADS UP I HAVE TO COPY AND PASTE PROBLEM 5 BECASUE OF TIME RESTRAINT
+#MADE A COMMENT IN GOOGLE TIP101 TRACKER
 #1. Share 2 questions you would ask to help understand the question:
 #Understand
 
@@ -125,3 +151,13 @@ print("------------------Problem 5 --------------------")
 #3. Translate each sub-problem into pseudocode:
 #4. Translate each sub-problem into pseudocode:
 #5. Translate the pseudocode into Python and share your final answer:#1. Share 2 questions you would ask to help understand the question:
+def find_poisoned_duration(time_series, duration):
+    total_duration = 0
+    for i in range(len(time_series)-1):
+        # Calculate the actual poisoning time between two attacks
+        actual_duration = min(time_series[i+1] - time_series[i] - 1, duration)
+
+        total_duration += actual_duration
+    # Add the duration of the last attack
+    total_duration += duration
+    return total_duration
