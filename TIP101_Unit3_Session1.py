@@ -89,6 +89,15 @@ def reverse_string(my_str):
     for i  in range(len(my_str)-1, -1, -1):
         output += my_str[i]
     return output
+#Alternative Method
+#Return mystr[::-1]
+#myStr[start, end, step] 
+#We are stepping -1 or from the 
+#ALternative Method:
+#For loop
+# char + emptystring
+#Adds first letter in
+
     
 my_str = "live"
 print("----------------------Question 4----------------------")
@@ -96,11 +105,46 @@ print(reverse_string(my_str))
 
 
 #1. Share 2 questions you would ask to help understand the question:
-#Understand
+#How can I take a string and keep count of its occurance?
+#When do I stop when I find non repeating character
+#Take in string as aparmaeter ?
+#Understand:
+#Take in string 
+#Return  first occurence index  that is not returning 
 #2. Write out in plain English what you want to do: 
+#Create an empty dictionary 
+#For each letter, assign letter as a index as a key and +1 as a value 
 #3. Translate each sub-problem into pseudocode:
+#loop through dictionary, if keyval is 1, return index 
 #4. Translate each sub-problem into pseudocode:
+#Return -1 if otherwiase 
+
 #5. Translate the pseudocode into Python and share your final answer:
+def first_unique_char(my_str):
+    emptyDict = {}
+    for i in range(len(my_str)):
+        if my_str[i] not in emptyDict:
+            emptyDict[i] = 1
+        else:
+             emptyDict[i] += 1
+    for index in emptyDict:
+         if emptyDict[index] ==  1:
+              return index
+    return -1
+print("----------------------Question 5----------------------")
+
+my_str = "leetcode"
+print(first_unique_char(my_str))
+
+str2 = "loveleetcode"
+print(first_unique_char(str2))
+
+str3 = "aabb"
+print(first_unique_char(str3))
+       
+             
+         
+
 
 
 
